@@ -33,6 +33,8 @@ func Receive(ctx context.Context, event cloudevents.Event) (*cloudevents.Event, 
 	log.Printf("Event data. \n%s\n", event)
 
 	dataevent := &schema.HelloWorld{Msg: string(event.Data())}
+	dataevent2 := &schema.HelloWorld{Msg: string(event.Data())}
+	log.Printf("Event received. \n%s\n", dataevent2)
 	if err := event.DataAs(dataevent); err != nil {
 		log.Printf("Error while extracting cloudevent Data: %s\n", err.Error())
 		return nil, cloudevents.NewHTTPResult(400, "failed to convert data: %s", err)
